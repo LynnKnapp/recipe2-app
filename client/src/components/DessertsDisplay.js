@@ -5,9 +5,9 @@ import DessertsList from './DessertsList'
 const DessertsDisplay = () => {
     
     return(
-        <div>
-
-
+        <div className='healthy-display'>
+            <h1>Delectable Dinners</h1>
+            <DessertsList />
         </div>
     )
 }
