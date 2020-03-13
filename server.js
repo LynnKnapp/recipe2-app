@@ -20,7 +20,7 @@ mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost:27017/recipedb',
         useUnifiedTopology: true
     }, () => console.log('connected to DB'))
 
-// app.use('/auth', require('./routes/authRouter.js'))
+app.use('/auth', require('./routes/authRouter.js'))
 // app.use('/api', expressJwt({secret: process.env.SECRET}))
 app.use('/recipes', require('./routes/recipeRouter.js')) 
 // app.use('api/myrecipe', ('./routes/myrecipeRouter.js'))
