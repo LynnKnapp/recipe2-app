@@ -7,23 +7,26 @@ require("dotenv").config()
 const path = require("path")
 const PORT = process.env.PORT || 6000
 
+// process.env.SECRET
+
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
-mongoose.connect(process.env.MONGODB_URI||'mongodb://localhost:27017/recipedb',
+mongoose.connect(
+    'mongodb://user-authentication',
     {
         useNewUrlParser: true,
         useFindAndModify: false,
-        useCreateIndex: true,
+        useCreateIndex: false,
         useUnifiedTopology: true
     }, () => console.log('connected to DB'))
 
 app.use('/auth', require('./routes/authRouter.js'))
-// app.use('/api', expressJwt({secret: process.env.SECRET}))
+app.use('/api', expressJwt({secret: process.env.SECRET}))
 app.use('/recipes', require('./routes/recipeRouter.js')) 
-// app.use('api/myrecipe', ('./routes/myrecipeRouter.js'))
+app.use('api/myrecipe', ('./routes/myrecipeRouter.js'))
 
 
 app.use((err, req, res, next) =>{
