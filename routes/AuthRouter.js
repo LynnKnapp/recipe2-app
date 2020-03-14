@@ -1,5 +1,5 @@
 const express = require("express")
-const User = require("../models/userSchema.js")
+const User = require("../models/user.js")
 const router = ('express').Router()
 const jwt = require("jsonwebtoken")
 
@@ -20,8 +20,7 @@ router.post("/signup", (req, res, next) => {
                 return next(err)
             }
             const token = jwt.sign(savedUser.toObject(),process.env.SECRET)
-    
-            return res.status(201).send({ user: savedUser, token})
+            return res.status(201).send({ token, user: savedUser})
         })
     })
 })    

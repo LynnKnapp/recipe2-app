@@ -22,7 +22,8 @@ mongoose.connect(
         useCreateIndex: false,
         useUnifiedTopology: true
     }, () => console.log('connected to DB'))
-
+    app.use(app.router);
+    routes.initialize(app);
 app.use('/auth', require('./routes/authRouter.js'))
 app.use('/api', expressJwt({secret: process.env.SECRET}))
 app.use('/recipes', require('./routes/recipeRouter.js')) 
@@ -31,8 +32,6 @@ app.use('api/myrecipe', ('./routes/myrecipeRouter.js'))
 
 app.use((err, req, res, next) =>{
     console.log(err)
-    if(err.name === 'UnauthorizedError')
-        res.status(err.status)
     return res.send({errMsg: err.message})
 })   
 
