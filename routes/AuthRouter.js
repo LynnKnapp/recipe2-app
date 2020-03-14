@@ -1,6 +1,6 @@
 const express = require("express")
 const User = require("../models/user.js")
-const router = ('express').Router()
+const router = express.Router()
 const jwt = require("jsonwebtoken")
 
 router.post("/signup", (req, res, next) => {

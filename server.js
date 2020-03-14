@@ -14,20 +14,21 @@ app.use(morgan('dev'))
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
-mongoose.connect(
-    'mongodb://user-authentication',
+mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost:27017/recipedb", 
     {
         useNewUrlParser: true,
         useFindAndModify: false,
         useCreateIndex: false,
         useUnifiedTopology: true
-    }, () => console.log('connected to DB'))
-    app.use(app.router);
-    routes.initialize(app);
+
+    }, () => console.log('connected to database'))
+    // app.use(app.router);
+    // routes.initialize(app);
+// app.use(app.router);    
 app.use('/auth', require('./routes/authRouter.js'))
 app.use('/api', expressJwt({secret: process.env.SECRET}))
 app.use('/recipes', require('./routes/recipeRouter.js')) 
-app.use('api/myrecipe', ('./routes/myrecipeRouter.js'))
+app.use('api/myrecipe', require('./routes/myrecipeRouter.js'))
 
 
 app.use((err, req, res, next) =>{
