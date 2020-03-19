@@ -1,5 +1,5 @@
 import  React from  'react'
-import DessertsList from './DessertsList'
+import DessertList from './DessertList'
 
 
 const DessertsDisplay = () => {
@@ -7,7 +7,7 @@ const DessertsDisplay = () => {
     return(
         <div className='healthy-display'>
             <h1>Delectable Dinners</h1>
-            <DessertsList />
+            <DessertList />
         </div>
     )
 }

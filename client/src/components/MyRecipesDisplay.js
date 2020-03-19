@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import MyRecipeList from './MyRecipeList.js'
-import MyRecipeForm from 'MyRecipeForm.js'
+import MyRecipeList from './MyRecipesList'
+// import MyRecipeForm from '/MyRecipeForm.js'
 
 function MyRecipesDisplay () {
     return(
@@ -10,4 +10,4 @@ function MyRecipesDisplay () {
     )
 }
 
-export default MyRecipes
+export default MyRecipesDisplay

@@ -1,0 +1,39 @@
+body{
+
+    background-image: url('https://www.greendotalaska.com/image/s-media-cache-ak0.pinimg.com/736x/14/85/09/148509207b1e6d97e29b3f99190d48d9.jpg');
+    background-size: cover;
+}
+.recipe-container{
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    margin: 25px;
+
+
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    height: 350px;
+    margin: 25px
+}
+img{
+    /* display: block; */
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    border: solid black 8px;
+    border-radius: 4%;
+}
+.info > h1 {
+    font-size: 30px;
+    text-align: center;
+}
+.info > h3{
+    font-size: 22px;
+}
+.info > h4{
+    font-size: 18px;
+    text-align: center;
+}

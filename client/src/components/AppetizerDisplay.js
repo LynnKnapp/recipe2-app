@@ -2,7 +2,7 @@ import React from 'react'
 import AppetizerList from './AppetizerList'
 
 
-const AppetizerList = () =>{
+const AppetizerDisplay = () =>{
     return(
         <div>
 
@@ -10,4 +10,4 @@ const AppetizerList = () =>{
     )
 }
 
-export default AppetizerList
+export default AppetizerDisplay

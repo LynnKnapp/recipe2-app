@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Gothic+A1:600|Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Actor&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Actor|Signika+Negative&display=swap');
+
+* {
+    /* background-image: url('http://www.whitburnpevsner.com/wp-content/uploads/2014/10/another-rough-old-and-worn-parchment-paper1.jpg'); */
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+.home{
+    background-image: url('http://www.whitburnpevsner.com/wp-content/uploads/2014/10/another-rough-old-and-worn-parchment-paper1.jpg'); 
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.img {
+    background-image: url('https://assets.blog.foodnetwork.ca/wp-content/uploads/sites/6/2015/10/Top-rules-of-fine-dining-e1446138719347.jpg');
+    height: 200px;
+    width: cover;
+    /* background-repeat: no-repeat; */
+    background-position-y: center;
+    background-size: 100% auto;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+    /* border-radius: 10%; */
+    border: solid black 12px;
+}
+.title{
+    background-color: black;
+}
+
+.img>h1 {
+    font-size: 70px;
+    text-align: center;
+    margin-top: 75px;
+    font-family: 'Lobster', cursive;  
+    text-shadow: 1px 2px whitesmoke;
+}
+.sub-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sub-title>h1{
+    padding-top: 150px;
+    font-size: 43px;
+    text-align: center;
+    padding-bottom: 40px;
+    font-family: 'Signika Negative', sans-serif;
+    text-shadow: 1px 2px rgb(245, 245, 245);
+}
+
+.sub-title>h2{
+    font-size: 40px;
+    font-weight: bold;
+    /* padding-left: 200px; */
+    text-align: center;
+    font-family: 'Actor', sans-serif;
+    padding-bottom: 20px;
+    text-shadow: 1px 2px rgb(245, 245, 245);    
+}
+
+.sub-title>h3{
+    font-size: 50px;
+    text-align: center;
+    font-family: 'Lobster', cursive; 
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-shadow: 1px 2px rgb(245, 245, 245);
+    
+}
+a > img{
+    height: 450px;
+    width: 450px;
+    border: solid black 10px;
+}
+.home-img{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 35px;
+}
+
+.home>h4 {
+    font-size: 25px;
+    text-align: center;
+    border: black solid;
+}
+
+@media screen and (min-width: 375px)and (max-width: 600px){
+   a >img{
+    height: 72vw;
+    width: 95vw;
+    border: solid black 5px;
+}
+   
+    .img > h1{
+        font-size: 45px;
+        text-align: center;
+        margin-top: 100px;
+    }
+    .sub-title>h1 {
+        padding-top: 36px;
+        font-size: 25px;
+        text-align: center;
+        font-family: 'Gothic A1', sans-serif;
+        padding-bottom: 30px;
+        text-align: center;
+    }
+    .sub-title>h2 {
+        font-size: 24px;
+        margin-right: 202px;
+        text-align: center;
+        font-family: 'Gothic A1', sans-serif;
+        padding: 0;
+        margin-right: 0px
+    }
+    .sub-title>h3 {
+        font-size: 29px;
+        text-align: center;
+        padding-bottom: 4px;
+        margin-top: 30px;
+    }
+    .menu {
+        text-align: center;
+        /* border: none;
+        font-size: 19pt;
+        position: sticky;
+        padding: 11px 6px;
+        top: 0;
+        right: 0px;
+        width: 100%; */
+        /* height: 50px; */
+    }
+      
+}    
+

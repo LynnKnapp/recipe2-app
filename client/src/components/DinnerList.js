@@ -3,7 +3,7 @@ import DinnerRecipe from './DinnerRecipe'
 import axios from 'axios'
 
 
-function DinnerRecipe () {
+function DinnerList () {
     return(
         <div>
 
@@ -11,4 +11,4 @@ function DinnerRecipe () {
     )
 }
 
-export default DinnerRecipe
+export default DinnerList
