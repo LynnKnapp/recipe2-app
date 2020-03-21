@@ -601,7 +601,28 @@ form{
     color: whitesmoke;
     
 }
+.carousel {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 80px;
+    box-shadow: 7px 7px 10px #342E;
+}
 
+.carouselBtns {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    button {
+        border: none;
+        margin: 25px;
+        background: $lightText;
+    }
+    
+}
+
+.fa {
+    font-size: 30px;
+}
 
 
 @media screen and (min-width: 375px) and (max-width: 950px){

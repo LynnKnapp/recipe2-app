@@ -26,8 +26,10 @@
     "mongoose": "^5.9.3",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.2",
+    "pure-react-carousel": "^1.26.1",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-firebase-file-uploader": "^2.4.3",
+    "react-icons": "^3.9.0",
     "react-router-dom": "^5.1.2",
     "semantic-ui-react": "^0.88.2",
     "uuidv4": "^6.0.6"
