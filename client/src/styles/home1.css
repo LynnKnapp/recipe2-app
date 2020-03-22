@@ -12,6 +12,9 @@
     background-image: url('http://www.whitburnpevsner.com/wp-content/uploads/2014/10/another-rough-old-and-worn-parchment-paper1.jpg'); 
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 body{
     background-repeat: no-repeat;
@@ -23,13 +26,10 @@ body{
     background-image: url('https://assets.blog.foodnetwork.ca/wp-content/uploads/sites/6/2015/10/Top-rules-of-fine-dining-e1446138719347.jpg');
     height: 200px;
     width: cover;
-    /* background-repeat: no-repeat; */
     background-position-y: center;
     background-size: 100% auto;
     margin-left: auto;
     margin-right: auto;
-    /* width: 50%; */
-    /* border-radius: 10%; */
     border: solid black 12px;
 }
 .title{
@@ -50,35 +50,25 @@ body{
     align-items: center;
 }
 .sub-title>h1{
-    padding-top: 20px;
+    padding-top: 40px;
     font-size: 43px;
     text-align: center;
-    font-family: 'Signika Negative', sans-serif;
+    font-weight: bold;
     text-shadow: 1px 2px rgb(245, 245, 245);
 }
 
 .sub-title>h2{
+    padding-top: 20px;
     font-size: 40px;
     font-weight: bold;
-    /* padding-left: 200px; */
     text-align: center;
-    font-family: 'Actor', sans-serif;
     padding-bottom: 20px;
     text-shadow: 1px 2px rgb(245, 245, 245);    
 }
 
-.sub-title>h3{
-    font-size: 50px;
-    text-align: center;
-    font-family: 'Lobster', cursive; 
-    padding-top: 20px;
-    padding-bottom: 40px;
-    text-shadow: 1px 2px rgb(245, 245, 245);
-    
-}
 a > img{
-    height: 450px;
-    width: 450px;
+    height: 350px;
+    width: 350px;
     border: solid black 10px;
 }
 .home-img{
@@ -103,12 +93,14 @@ a > img{
     display: flex;
     justify-content: space-around;
     text-align: center;
+    height: 0;
 }
 .carouselBtns > button{
     border: none;
-    margin: 25px;
-    background-color: ghostwhite;
-    border: solid 6px black;
+    background-color: transparent;
+    font-size: 2em;
+    outline: none
+    
 } 
 .mission{
     display: flex;
@@ -116,10 +108,46 @@ a > img{
     align-items: center;
     width: 100%;   
 }
-
-.fa {
-    font-size: 30px;
+.category-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw;
+    margin-left: 150px
 }
+.categories{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+.about-categories > h1{
+    margin-top: 80px;
+    text-align: center;
+    margin-bottom: -70px;
+    font-style: italic;
+    font-weight: bold;
+}
+.inner-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.link-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 50px;
+}
+.link-container > a > img{
+    width: 250px;
+    height: 250px;
+    border: solid black 6px;
+    border-radius: 50%
+}
+
+
 
 @media screen and (min-width: 375px)and (max-width: 600px){
    a >img{

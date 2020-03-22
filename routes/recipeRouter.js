@@ -1,7 +1,6 @@
 const express = require("express")
 const recipeRouter = express.Router()
 const Recipe = require("../models/recipe")
-const User = require('../models/user')
 
 
 
@@ -15,8 +14,17 @@ recipeRouter.get('/', ( req,res, next) =>{
     })
 })
 
-recipeRouter.post("/", (req, res, next) =>{
-    console.log('working')
+
+recipeRouter.get('/appetizer', ( req,res, next) =>{
+    Recipe.find((err, recipes)=>{
+        if(err) {
+            res.status(500)
+            return next (err)
+        }
+        res.status(200).send(recipes) 
+    })
+})
+recipeRouter.post("/appetizer", (req, res, next) =>{
     const newRecipe = new Recipe(req.body)
     newRecipe.save((err, newRecipe) =>{
         if(err) {
@@ -27,7 +35,7 @@ recipeRouter.post("/", (req, res, next) =>{
     })
 })
 
-recipeRouter.put("/:_id", (req,res, next)=>{
+recipeRouter.put("/appetizer/:_id", (req,res, next)=>{
     Recipe.findOneAndUpdate(
         {_id: req.params._id}, 
         req.body, 
@@ -42,7 +50,7 @@ recipeRouter.put("/:_id", (req,res, next)=>{
 
 })
 
-recipeRouter.delete("/:_id", (req, res, next)=>{
+recipeRouter.delete("/appetizer/:_id", (req, res, next)=>{
     Recipe.findOneAndRemove({_id: req.params._id},  (err, recipe)=>{
         if(err){
             res.status(500)
@@ -51,39 +59,104 @@ recipeRouter.delete("/:_id", (req, res, next)=>{
     })
 })
 
-recipeRouter.get('/dinner', (req, res, next) =>{
-    const query = {type: 'dinner'}
-    const send = (err, resultsofFind) =>{
+recipeRouter.get('/dinner', ( req,res, next) =>{
+    Recipe.find((err, recipes)=>{
         if(err) {
             res.status(500)
-            return next(err)
+            return next (err)
         }
-        res.status(200).send(resultsofFind)
-    }
-    Recipe.find(query, send)
-})
-
-recipeRouter.get('/dessert', (req, res, next) => {
-    const query = {type: 'dessert'}
-    const send =(err, resultsofFind) =>{
-        if(err) {
-            res.status(500)
-            return next(err)
-        }
-        res.status(200).send(resultsofFind)
-    }
-    Recipe.find(query, send)
-})
-
-recipeRouter.get('/appetizers', (req, res, next) => {
-    Recipe.find((err, recipes) =>{
-        if(err) {
-            res.status(500)
-            return next(err)
-        } 
-        res.status(200).send(recipes)
+        res.status(200).send(recipes) 
     })
 })
+
+recipeRouter.post("/dinner", (req, res, next) =>{
+    console.log('working')
+    const newRecipe = new Recipe(req.body)
+    // newRecipe.user = req.user._id
+    newRecipe.save((err, newRecipe) =>{
+        if(err) {
+            res.status(500)
+            return next(err) 
+        }
+        return res.status(201).send(newRecipe)
+    })
+})
+
+recipeRouter.put("/dinner/:_id", (req,res, next)=>{
+    Recipe.findOneAndUpdate(
+        {_id: req.params._id}, 
+        req.body, 
+        {new: true}, 
+        (err, recipe)=>{
+        if(err) {
+            res.status(500)
+            return next(err)
+        }
+        return res.status(201).send(recipe)
+    })
+
+})
+
+recipeRouter.delete("/dinner/:_id", (req, res, next)=>{
+    Recipe.findOneAndRemove({_id: req.params._id},  (err, recipe)=>{
+        if(err){
+            res.status(500)
+        }
+        return res.status(200).send("sucessfully deleted")
+    })
+})
+
+
+recipeRouter.get('/dessert', ( req,res, next) =>{
+    Recipe.find((err, recipes)=>{
+        if(err) {
+            res.status(500)
+            return next (err)
+        }
+        res.status(200).send(recipes) 
+    })
+})
+recipeRouter.post("/dessert", (req, res, next) =>{
+    console.log('working')
+    const newRecipe = new Recipe(req.body)
+    newRecipe.user = req.user._id
+    newRecipe.save((err, newRecipe) =>{
+        if(err) {
+            res.status(500)
+            return next(err) 
+        }
+        return res.status(201).send(newRecipe)
+    })
+})
+
+recipeRouter.put("/dessert/:_id", (req,res, next)=>{
+    Recipe.findOneAndUpdate(
+        {_id: req.params._id}, 
+        req.body, 
+        {new: true}, 
+        (err, recipe)=>{
+        if(err) {
+            res.status(500)
+            return next(err)
+        }
+        return res.status(201).send(recipe)
+    })
+
+})
+
+recipeRouter.delete("/dessert/:_id", (req, res, next)=>{
+    Recipe.findOneAndRemove({_id: req.params._id},  (err, recipe)=>{
+        if(err){
+            res.status(500)
+        }
+        return res.status(200).send("sucessfully deleted")
+    })
+})
+
+
+
+
+
 
 
 module.exports = recipeRouter

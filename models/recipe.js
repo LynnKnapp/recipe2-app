@@ -13,7 +13,7 @@ const recipe = new Schema ({
      },
      type: {
          type: String,
-         enum: ["dinner", "dessert", 'appetizers']
+         enum: ["dinner", "dessert", 'appetizer']
 
      },
      description: {

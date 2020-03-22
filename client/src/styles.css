@@ -12,10 +12,7 @@
 input [type=text]{
     width: 40px;
 }
-img {
-    width: 100%;
-    border-radius: 12px;
-}
+
 .uploaded-image{
     width: 125px;
     height: 125px;

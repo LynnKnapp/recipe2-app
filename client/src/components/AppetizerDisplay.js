@@ -4,8 +4,9 @@ import AppetizerList from './AppetizerList'
 
 const AppetizerDisplay = () =>{
     return(
-        <div>
-
+        <div className= 'healthy-display'>
+            <h1>Audacious AppetizerList</h1>
+            <AppetizerList />
         </div>
     )
 }

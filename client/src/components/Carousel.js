@@ -1,6 +1,7 @@
 import React from 'react'
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Image } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import {FaArrowAltCircleLeft, FaArrowAltCircleRight  } from "react-icons/fa";
 
 class Carousel extends React.Component {
     render() {
@@ -27,12 +28,9 @@ class Carousel extends React.Component {
                 </Slider>
                 
                 <div className="carouselBtns">
-                <ButtonBack><i className="fa fa-arrow-circle-left" aria-hidden="true"></i>
-                </ButtonBack>
-                <ButtonNext><i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                </ButtonNext>
+                    <ButtonBack><FaArrowAltCircleLeft /></ButtonBack>
+                    <ButtonNext><FaArrowAltCircleRight /></ButtonNext>
                 </div>
-                
             </CarouselProvider>
         )
     }
