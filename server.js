@@ -17,16 +17,16 @@ app.use(express.static(path.join(__dirname, "client", "build")))
 mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost:27017/recipe1db", 
     {
         useNewUrlParser: true,
-        useFindAndModify: true,
-        useCreateIndex: true,
+        useFindAndModify: false,
+        useCreateIndex: false,
         useUnifiedTopology: true
 
     }, () => console.log('connected to database'))
    
 app.use('/auth', require('./routes/authRouter.js'))
 app.use('/api', expressJwt({secret: process.env.SECRET}))
-app.use('/recipes', require('./routes/recipeRouter.js')) 
-app.use('api/myrecipes', require('./routes/myrecipeRouter.js'))
+app.use('/recipe', require('./routes/recipeRouter.js')) 
+app.use('api/myrecipe', require('./routes/myrecipeRouter.js'))
 
 
 app.use((err, req, res, next) =>{

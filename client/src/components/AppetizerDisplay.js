@@ -6,7 +6,8 @@ const AppetizerDisplay = () =>{
     return(
         <div className= 'healthy-display'>
             <h1>Audacious AppetizerList</h1>
-            <AppetizerList />
+            <AppetizerList 
+            />
         </div>
     )
 }

@@ -1,9 +1,8 @@
 const express = require("express")
 const myRecipeRouter = express.Router()
-const Recipe = require("../models/recipe")
 const User = require('../models/user')
 
-myRecipeRouter.get('/myrecipe', (req, res, next) => {
+myRecipeRouter.get('/', (req, res, next) => {
     Recipe.find((err, recipes) => {
         if(err) {
             res.status(500)
@@ -13,7 +12,7 @@ myRecipeRouter.get('/myrecipe', (req, res, next) => {
     })
 })
 
-myRecipeRouter.post("/myrecipe", (req, res, next) =>{
+myRecipeRouter.post("/", (req, res, next) =>{
     console.log('working')
     const newRecipe = new Recipe(req.body)
     newRecipe.user = req.user._id
@@ -26,7 +25,7 @@ myRecipeRouter.post("/myrecipe", (req, res, next) =>{
     })
 })
 
-myRecipeRouter.put("/myrecipe/:_id", (req,res, next)=>{
+myRecipeRouter.put("/:_id", (req,res, next)=>{
     Recipe.findOneAndUpdate(
         {_id: req.params._id}, 
         req.body, 
@@ -41,7 +40,7 @@ myRecipeRouter.put("/myrecipe/:_id", (req,res, next)=>{
 
 })
 
-myRecipeRouter.delete("/myrecipe/:_id", (req, res, next)=>{
+myRecipeRouter.delete("/:_id", (req, res, next)=>{
     Recipe.findOneAndRemove({_id: req.params._id},  (err, recipe)=>{
         if(err){
             res.status(500)

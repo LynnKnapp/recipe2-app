@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
+
 const myRecipeAxios= axios.create()
 
 myRecipeAxios.interceptors.request.use((config)=>{
@@ -9,9 +10,7 @@ myRecipeAxios.interceptors.request.use((config)=>{
     return config
 })
 
-
-
-class Appetizer extends React.Component{
+class Dinner extends React.Component{
     constructor(props){
         super(props)
     }
@@ -21,7 +20,7 @@ class Appetizer extends React.Component{
     }
 
     addToMyRecipes = (id) => {    
-        myRecipeAxios.put(`api/myrecipes/${this.props._id}`)
+        myRecipeAxios.put(`api/myrecipe/${this.props._id}`)
             .then(res => {
                 this.setState(prevState => ({
                     recipes: prevState.recipes.map(recipe => recipe._id === id ? res.data : recipe)
@@ -57,4 +56,4 @@ class Appetizer extends React.Component{
     }
 }
 
-export default Appetizer
+export default Dinner

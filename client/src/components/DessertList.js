@@ -5,33 +5,67 @@ import axios from 'axios'
 const recipeAxios = axios.create()
 
 
-function DessertList () {
+class DessertList extends React.Component{
+    constructor(){
+        super()
+        this.state={
+            desserts: []
+        }
+    }
 
-   const [desserts, setDesserts] = useState([])
-   console.log(desserts)
-
-    
-    
-
-    
-     useEffect(() => {
-         recipeAxios.get('/recipes/dessert')
-         .then(res => setDesserts(prevDesserts => ([ 
-             ...prevDesserts, ...res.data
-         ])))
-         .catch(err => console.log(err))
-   
-    }, [])     
-    
+    componentDidMount(){
+        this.getDesserts()
         
+    }
+
+    getDesserts = () =>{
+        recipeAxios.get('/recipe/dessert')
+        .then(res => {
+            this.setState(prevState =>{
+                return {desserts: [...prevState.desserts, ...res.data]}
+            })
+        })
+        .catch(err => console.log(err))
+    }
+
+    render(){
+        const mappedDesserts = this.state.desserts.map(recipe =>{
+            return <Dessert dessertArr={this.state.recipe} {...recipe} key={recipe._id}/>
+        })
             return(
                 <div className='ind-recipe'>
-                {desserts.map(dessert => <h1>{dessert.name}</h1>)}
+                    {mappedDesserts}
                 </div>
 
             )
-           
+    }
 }
 
-
 export default DessertList
+
+
+// function DessertList () {
+
+//    const [desserts, setDesserts] = useState([])
+//    console.log(desserts)
+
+    
+    
+
+    
+//      useEffect(() => {
+//          recipeAxios.get('/recipes/dessert')
+//          .then(res => setDesserts(prevDesserts => ([ 
+//              ...prevDesserts, ...res.data
+//          ])))
+//          .catch(err => console.log(err))
+   
+//     }, [])     
+    
+        
+            
+           
+// }
+
+
+// export default DessertList

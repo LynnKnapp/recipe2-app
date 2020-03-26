@@ -6,7 +6,7 @@ const DessertsDisplay = () => {
     
     return(
         <div className='healthy-display'>
-            <h1>Delectable Dinners</h1>
+            <h1>indulgeable Desserts</h1>
             <DessertList />
         </div>
     )

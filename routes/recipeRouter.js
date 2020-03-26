@@ -16,13 +16,16 @@ recipeRouter.get('/', ( req,res, next) =>{
 
 
 recipeRouter.get('/appetizer', ( req,res, next) =>{
-    Recipe.find((err, recipes)=>{
+    const query = { type: "appetizer" }
+    const send = (err, resultsOfFind) => {
         if(err) {
             res.status(500)
-            return next (err)
+            return next(err)
         }
-        res.status(200).send(recipes) 
-    })
+        res.status(200).send(resultsOfFind)
+    }
+    
+    Recipe.find(query, send)
 })
 recipeRouter.post("/appetizer", (req, res, next) =>{
     const newRecipe = new Recipe(req.body)
@@ -60,13 +63,17 @@ recipeRouter.delete("/appetizer/:_id", (req, res, next)=>{
 })
 
 recipeRouter.get('/dinner', ( req,res, next) =>{
-    Recipe.find((err, recipes)=>{
+    const query = { type: 'dinner' }
+    const send = (err, resultsOfFind) => {
         if(err) {
             res.status(500)
-            return next (err)
+            return next(err)
         }
-        res.status(200).send(recipes) 
-    })
+        res.status(200).send(resultsOfFind)
+    }
+    
+    Recipe.find(query, send)
+
 })
 
 recipeRouter.post("/dinner", (req, res, next) =>{
@@ -108,18 +115,21 @@ recipeRouter.delete("/dinner/:_id", (req, res, next)=>{
 
 
 recipeRouter.get('/dessert', ( req,res, next) =>{
-    Recipe.find((err, recipes)=>{
+    const query = { type: "dessert" }
+    const send = (err, resultsOfFind) => {
         if(err) {
             res.status(500)
-            return next (err)
+            return next(err)
         }
-        res.status(200).send(recipes) 
-    })
+        res.status(200).send(resultsOfFind)
+    }
+    
+    Recipe.find(query, send)
 })
+
 recipeRouter.post("/dessert", (req, res, next) =>{
     console.log('working')
     const newRecipe = new Recipe(req.body)
-    newRecipe.user = req.user._id
     newRecipe.save((err, newRecipe) =>{
         if(err) {
             res.status(500)

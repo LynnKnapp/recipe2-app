@@ -22,7 +22,7 @@ const App = (props) =>{
                         <Route exact path='/' component={Home} />
                         <Route path='/appetizers' component={AppetizersDisplay}/>
                         <Route path='/dinner' component={DinnerDisplay}/>
-                        <Route path='/desserts' component={DessertsDisplay}/> 
+                        <Route path='/dessert' component={DessertsDisplay}/> 
                         <Route path='/myrecipes' component={MyRecipesDisplay} />
                         <Route exact path = "/register" render={rProps => <Auth {...rProps}/>}
                         />
