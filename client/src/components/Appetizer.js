@@ -1,38 +1,21 @@
-import React, {useEffect} from 'react'
-import { BrowserRouter as Router } from "react-router"
-import { useHistory} from "react-router-dom";
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
+import {withUser} from '../context/UserProvider'
 
-const myRecipeAxios= axios.create()
-
-myRecipeAxios.interceptors.request.use((config)=>{
-    const token = localStorage.getItem('token')
-    config.headers.Authorization = `Bearer ${token}`
-    return config
-})
-
-
-
+const myRecipeAxios = axios.create()
 function Appetizer (props) {
-    
-    const history = useHistory()
-   
-    
-    
-        // history.push('/api/myrecipe')
-      
 
-    const addToMyRecipes = (id, updates) => {    
-        myRecipeAxios.put(`api/myrecipes/${props._id}`, updates)
-                .then(res => {
-                    this.setState(prevState => ({
-                        recipes: prevState.recipes.map(recipe => recipe._id === id ? res.data : recipe)
-                    }))
-                    console.log(res.data)
-                    
-                })
-                
-                .catch(err => console.log(err))       
+    useEffect(() => {
+        appetizerToMyRecipes()
+    })
+    const appetizerToMyRecipes = (_id) => {    
+        myRecipeAxios.put(`/recipe/appetizer/${_id}`)
+        .then(res => { 
+            this.setState(prevState => ({
+                myRecipes: prevState.recipes.map(recipe => recipe._id === _id ? res.data : recipe)
+            }))
+        })
+        .catch(err => console.log(err))
     }
 
     const mappedIngredients = props.ingredients.map(ingredient =>{
@@ -41,7 +24,7 @@ function Appetizer (props) {
         return(
             <div className='recipe-container'>
                     <div className='favorite-btn'>
-                        <button onClick={addToMyRecipes}>Add to My Recipes</button>
+                        <button onClick={appetizerToMyRecipes}>Add to My Recipes</button>
                     </div>
                 <img src={props.imgUrl} alt='recipe'/>
                 <div className='info'>
@@ -57,4 +40,4 @@ function Appetizer (props) {
         )
 }
 
-export default Appetizer
+export default withUser(Appetizer)

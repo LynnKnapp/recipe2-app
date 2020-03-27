@@ -32,5 +32,6 @@ const recipe = new Schema ({
          ref: "User",
         //  require: true       
      }
+
 })
 module.exports = mongoose.model('Recipe', recipe)

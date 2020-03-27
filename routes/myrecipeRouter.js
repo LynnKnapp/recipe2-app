@@ -1,17 +1,32 @@
 const express = require("express")
 const myRecipeRouter = express.Router()
 const Recipe = require("../models/recipe")
+const User = require('../models/user.js')
 
 
-myRecipeRouter.get('/api/myrecipe', (req, res, next) => {
-    Recipe.find((err, recipes) => {
-        if(err) {
-            res.status(500)
-            return next(err)
-        }
-        res.status(200).send(recipes)
-    })
+// myRecipeRouter.get('/api/myrecipe', (req, res, next) => {
+//     Recipe.find((err, recipes) => {
+//         if(err) {
+//             res.status(500)
+//             return next(err)
+//         }
+//         res.status(200).send(recipes)
+//     })
+// })
+
+myRecipeRouter.get('/api/myrecipe', async (req, res, next) => {
+    try {
+        // Get the updated user object ( so we have their updated array of favorites )
+        const user = await User.findOne({_id: req.user._id}) 
+        const favoriteRecipes = await Recipe.find({_id: {$in: user.favorites}})
+        return res.status(200).send(favoriteRecipes)
+    }
+    catch(err){
+        res.status(500)
+        return next(err)
+    }
 })
+
 //get one
 myRecipeRouter.get("/appetizer", (req,res, next)=>{
     Recipe.findOne(
@@ -42,16 +57,16 @@ myRecipeRouter.post("/", (req, res, next) =>{
 })
 
 myRecipeRouter.put("/api/myrecipe/:_id", (req,res, next)=>{
-    Recipe.findOneAndUpdate(
+    User.findOneAndUpdate(
         {_id: req.user._id}, 
         { $push: { favorites: req.params._id } }, 
         {new: true}, 
-        (err, recipe)=>{
+        (err, user)=>{
         if(err) {
             res.status(500)
             return next(err)
         }
-        return res.status(201).send(recipe)
+        return res.status(201).send(user)
     })
 
 })
