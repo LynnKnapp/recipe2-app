@@ -1,8 +1,9 @@
 const express = require("express")
 const myRecipeRouter = express.Router()
-const User = require('../models/user')
+const Recipe = require("../models/recipe")
 
-myRecipeRouter.get('/', (req, res, next) => {
+
+myRecipeRouter.get('/api/myrecipe', (req, res, next) => {
     Recipe.find((err, recipes) => {
         if(err) {
             res.status(500)
@@ -10,6 +11,21 @@ myRecipeRouter.get('/', (req, res, next) => {
         }
         res.status(200).send(recipes)
     })
+})
+//get one
+myRecipeRouter.get("/appetizer", (req,res, next)=>{
+    Recipe.findOne(
+        {_id: req.user._id}, 
+        
+    ).populate('myrecipe').exec((err, user)=>{
+        if(err) {
+            res.status(500)
+            return next(err)
+        }
+    
+        return res.status(201).send(user.favorites)
+    })
+
 })
 
 myRecipeRouter.post("/", (req, res, next) =>{
@@ -25,10 +41,10 @@ myRecipeRouter.post("/", (req, res, next) =>{
     })
 })
 
-myRecipeRouter.put("/:_id", (req,res, next)=>{
+myRecipeRouter.put("/api/myrecipe/:_id", (req,res, next)=>{
     Recipe.findOneAndUpdate(
-        {_id: req.params._id}, 
-        req.body, 
+        {_id: req.user._id}, 
+        { $push: { favorites: req.params._id } }, 
         {new: true}, 
         (err, recipe)=>{
         if(err) {

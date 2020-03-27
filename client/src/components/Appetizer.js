@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { BrowserRouter as Router } from "react-router"
+import { useHistory} from "react-router-dom";
 import axios from 'axios'
 
 const myRecipeAxios= axios.create()
@@ -11,42 +13,41 @@ myRecipeAxios.interceptors.request.use((config)=>{
 
 
 
-class Appetizer extends React.Component{
-    constructor(props){
-        super(props)
-    }
+function Appetizer (props) {
     
-    componentDidMount(){
-        this.addToMyRecipes()
+    const history = useHistory()
+   
+    
+    
+        // history.push('/api/myrecipe')
+      
+
+    const addToMyRecipes = (id, updates) => {    
+        myRecipeAxios.put(`api/myrecipes/${props._id}`, updates)
+                .then(res => {
+                    this.setState(prevState => ({
+                        recipes: prevState.recipes.map(recipe => recipe._id === id ? res.data : recipe)
+                    }))
+                    console.log(res.data)
+                    
+                })
+                
+                .catch(err => console.log(err))       
     }
 
-    addToMyRecipes = (id) => {    
-        myRecipeAxios.put(`api/myrecipes/${this.props._id}`)
-            .then(res => {
-                this.setState(prevState => ({
-                    recipes: prevState.recipes.map(recipe => recipe._id === id ? res.data : recipe)
-                }))
-                console.log(res.data.favorites)
-            })
-            .catch(err => console.log(err))
-            
-    }
-
-
-    render(){
-        const mappedIngredients = this.props.ingredients.map(ingredient =>{
-            return <li>{ingredient}</li>
-        })
+    const mappedIngredients = props.ingredients.map(ingredient =>{
+        return <li>{ingredient}</li>
+    })
         return(
             <div className='recipe-container'>
                     <div className='favorite-btn'>
-                        <button onClick={this.addToMyRecipes}>Add to My Recipes</button>
+                        <button onClick={addToMyRecipes}>Add to My Recipes</button>
                     </div>
-                <img src={this.props.imgUrl} alt='recipe'/>
+                <img src={props.imgUrl} alt='recipe'/>
                 <div className='info'>
-                    <h1 className= 'text'>{this.props.name}</h1>
-                    <h3 className= 'text'>{this.props.description}</h3>
-                    <h4 className= 'text'>Author: {this.props.author}</h4>
+                    <h1 className= 'text'>{props.name}</h1>
+                    <h3 className= 'text'>{props.description}</h3>
+                    <h4 className= 'text'>Author: {props.author}</h4>
                 </div>
                 <div className='ingredients'>  
                     <h5 className='ingredient-text'>Ingredients</h5>
@@ -54,7 +55,6 @@ class Appetizer extends React.Component{
                 </div>
             </div>
         )
-    }
 }
 
 export default Appetizer
