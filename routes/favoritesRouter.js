@@ -1,5 +1,5 @@
 const express = require("express")
-const myRecipeRouter = express.Router()
+const favoritesRouter = express.Router()
 const Recipe = require("../models/recipe")
 const User = require('../models/user.js')
 
@@ -14,7 +14,7 @@ const User = require('../models/user.js')
 //     })
 // })
 
-myRecipeRouter.get('/api/myrecipe', async (req, res, next) => {
+favoritesRouter.get('/', async (req, res, next) => {
     try {
         // Get the updated user object ( so we have their updated array of favorites )
         const user = await User.findOne({_id: req.user._id}) 
@@ -28,11 +28,11 @@ myRecipeRouter.get('/api/myrecipe', async (req, res, next) => {
 })
 
 //get one
-myRecipeRouter.get("/appetizer", (req,res, next)=>{
+favoritesRouter.get("/", (req,res, next)=>{
     Recipe.findOne(
         {_id: req.user._id}, 
         
-    ).populate('myrecipe').exec((err, user)=>{
+    ).populate('favorites').exec((err, user)=>{
         if(err) {
             res.status(500)
             return next(err)
@@ -43,7 +43,7 @@ myRecipeRouter.get("/appetizer", (req,res, next)=>{
 
 })
 
-myRecipeRouter.post("/", (req, res, next) =>{
+favoritesRouter.post("/", (req, res, next) =>{
     console.log('working')
     const newRecipe = new Recipe(req.body)
     newRecipe.user = req.user._id
@@ -56,7 +56,7 @@ myRecipeRouter.post("/", (req, res, next) =>{
     })
 })
 
-myRecipeRouter.put("/api/myrecipe/:_id", (req,res, next)=>{
+favoritesRouter.put("/:_id", (req,res, next)=>{
     User.findOneAndUpdate(
         {_id: req.user._id}, 
         { $push: { favorites: req.params._id } }, 
@@ -71,7 +71,7 @@ myRecipeRouter.put("/api/myrecipe/:_id", (req,res, next)=>{
 
 })
 
-myRecipeRouter.delete("/:_id", (req, res, next)=>{
+favoritesRouter.delete("/:_id", (req, res, next)=>{
     Recipe.findOneAndRemove({_id: req.params._id},  (err, recipe)=>{
         if(err){
             res.status(500)
@@ -80,4 +80,4 @@ myRecipeRouter.delete("/:_id", (req, res, next)=>{
     })
 })
 
-module.exports = myRecipeRouter
+module.exports = favoritesRouter

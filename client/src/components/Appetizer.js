@@ -3,17 +3,26 @@ import axios from 'axios'
 import {withUser} from '../context/UserProvider'
 
 const myRecipeAxios = axios.create()
-function Appetizer (props) {
 
-    useEffect(() => {
-        appetizerToMyRecipes()
-    })
+myRecipeAxios.interceptors.request.use((config)=>{
+    const token = localStorage.getItem('token')
+    config.headers.Authorization = `Bearer ${token}`
+    return config
+})
+
+function Appetizer (props) {
+    // const [appetizers, setAppetizers] = useState([])
+    // useEffect(() => {
+    //     appetizerToMyRecipes(props._id)
+    // }, [appetizers])
+    
+    // console.log(appetizers)
     const appetizerToMyRecipes = (_id) => {    
-        myRecipeAxios.put(`/recipe/appetizer/${_id}`)
+        myRecipeAxios.put(`/api/favorites/${_id}`)
         .then(res => { 
-            this.setState(prevState => ({
-                myRecipes: prevState.recipes.map(recipe => recipe._id === _id ? res.data : recipe)
-            }))
+            // setAppetizers(prevAppetizers => (
+            //      prevAppetizers.map(recipe => recipe._id === _id ? res.data : recipe)
+            // ))
         })
         .catch(err => console.log(err))
     }
@@ -24,7 +33,7 @@ function Appetizer (props) {
         return(
             <div className='recipe-container'>
                     <div className='favorite-btn'>
-                        <button onClick={appetizerToMyRecipes}>Add to My Recipes</button>
+                        <button onClick={() => appetizerToMyRecipes(props._id)}>Add to My Recipes</button>
                     </div>
                 <img src={props.imgUrl} alt='recipe'/>
                 <div className='info'>

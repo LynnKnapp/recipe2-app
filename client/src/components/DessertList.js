@@ -44,28 +44,3 @@ class DessertList extends React.Component{
 export default DessertList
 
 
-// function DessertList () {
-
-//    const [desserts, setDesserts] = useState([])
-//    console.log(desserts)
-
-    
-    
-
-    
-//      useEffect(() => {
-//          recipeAxios.get('/recipes/dessert')
-//          .then(res => setDesserts(prevDesserts => ([ 
-//              ...prevDesserts, ...res.data
-//          ])))
-//          .catch(err => console.log(err))
-   
-//     }, [])     
-    
-        
-            
-           
-// }
-
-
-// export default DessertList

@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGODB_URI ||"mongodb://localhost:27017/recipe1db"
 app.use('/auth', require('./routes/authRouter.js'))
 app.use('/api', expressJwt({secret: process.env.SECRET}))
 app.use('/recipe', require('./routes/recipeRouter.js')) 
-app.use('api/myrecipe', require('./routes/myrecipeRouter.js'))
+app.use('/api/favorites', require('./routes/favoritesRouter.js'))
 
 
 app.use((err, req, res, next) =>{

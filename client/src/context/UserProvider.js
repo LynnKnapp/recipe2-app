@@ -23,36 +23,6 @@ class UserProvider extends Component {
             
         }
     }
-    appetizerToMyRecipes = (_id) => {    
-        myRecipeAxios.put(`/recipe/appetizer/${_id}`)
-        .then(res => { 
-            this.setState(prevState => ({
-                myRecipes: prevState.recipes.map(recipe => recipe._id === _id ? res.data : recipe)
-            }))
-        })
-        .catch(err => console.log(err))
-    }
-
-    dinnerToMyRecipes = (_id) => {    
-        myRecipeAxios.put(`/recipe/dinner/${_id}`)
-        .then(res => { 
-            this.setState(prevState => ({
-                myRecipes: prevState.recipes.map(recipe => recipe._id === _id ? res.data : recipe)
-            }))
-        })
-        .catch(err => console.log(err))
-    }
-
-    dessertsToMyRecipes = (_id) => {    
-        myRecipeAxios.put(`/recipe/dessert/${_id}`)
-        .then(res => { 
-            this.setState(prevState => ({
-                myRecipes: prevState.recipes.map(recipe => recipe._id === _id ? res.data : recipe)
-            }))
-        })
-        .catch(err => console.log(err))
-    }
-
 
       
     signup = credentials => {

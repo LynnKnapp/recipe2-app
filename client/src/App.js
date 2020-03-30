@@ -6,7 +6,7 @@ import Home from './components/Home.js'
 import AppetizersDisplay from './components/AppetizerDisplay'
 import DinnerDisplay from './components/DinnerDisplay'
 import DessertsDisplay from './components/DessertsDisplay'
-import MyRecipesDisplay from './components/MyRecipesDisplay'
+import FavoritesRecipesDisplay from './components/FavoriteRecipesDisplay'
 import Auth from './components/Auth/Auth'
 
 
@@ -23,7 +23,7 @@ const App = (props) =>{
                         <Route path='/appetizers' component={AppetizersDisplay}/>
                         <Route path='/dinner' component={DinnerDisplay}/>
                         <Route path='/dessert' component={DessertsDisplay}/> 
-                        <Route path='/myrecipes' component={MyRecipesDisplay} />
+                        <Route path='/myrecipes' component={FavoritesRecipesDisplay} />
                         <Route exact path = "/register" render={rProps => <Auth {...rProps}/>}
                         />
                 </Switch>             

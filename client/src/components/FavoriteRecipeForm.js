@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {storage } from '../firebase/Firebase'
 
 
-function MyRecipeForm (props) {
+function FavoriteRecipeForm (props) {
     const allInputs = {imgUrl: ''}
     const [imageAsUrl, setImageAsUrl] = useState(allInputs)
     const [imageAsFile, setImageAsFile] = useState('')
@@ -82,6 +82,6 @@ function MyRecipeForm (props) {
 }
        
 
-export default MyRecipeForm
+export default FavoriteRecipeForm
 
 

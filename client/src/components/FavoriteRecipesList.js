@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import MyRecipe from './MyRecipe'
+import FavoriteRecipe from './FavoriteRecipe'
 
 
 const recipeAxios = axios.create()
@@ -11,21 +11,22 @@ recipeAxios.interceptors.request.use((config)=>{
     return config
 })
 
-const MyRecipeList = (props) => {
+const FavoriteRecipeList = (props) => {
 
     const [myRecipes, setMyRecipe] = useState([])
-    
     useEffect(() => {
-        recipeAxios.get("/api/myrecipe")
-            .then(res => {
-                setMyRecipe(prevState =>{
-                    return {myRecipes: [...prevState.recipes, res.data]}
-                })
+        recipeAxios.get("/api/favorites")
+        .then(res => {
+            setMyRecipe(prevmyRecipes =>{
+                return  [...prevmyRecipes, res.data]
             })
-            .catch(err =>console.log(err))
-    })
-    const mappedRecipes = props.recipes.map(recipe => {
-        return      <MyRecipe
+        })
+        .catch(err =>console.log(err))
+    }, [])
+    console.log(myRecipes)
+    
+    const mappedRecipes = myRecipes.map(recipe => {
+        return      <FavoriteRecipe
                         key={recipe._id}
                         {...recipe}
                         _id={recipe._id}
@@ -42,4 +43,4 @@ const MyRecipeList = (props) => {
     )
 }
 
-export default MyRecipeList
+export default FavoriteRecipeList
